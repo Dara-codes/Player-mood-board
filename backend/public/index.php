@@ -7,11 +7,10 @@ $app = AppFactory::create();
 
 
 (require __DIR__ . '/../src/routes.php')($app);
-
 $app->add(function ($request, $handler) {
     $response = $handler->handle($request);
     return $response
-        ->withHeader('Access-Control-Allow-Origin', '*') 
+        ->withHeader('Access-Control-Allow-Origin', '*')
         ->withHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
         ->withHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
 });
@@ -21,5 +20,5 @@ $app->options('/{routes:.+}', function ($request, $response, $args) {
 });
 
 
-// Run the app
+// Run app
 $app->run();

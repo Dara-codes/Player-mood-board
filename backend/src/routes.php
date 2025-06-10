@@ -37,8 +37,8 @@ return function (App $app) {
 
     // GET /moods?date=YYYY-MM-DD
     $app->get('/moods', function (Request $request, Response $response) {
-        // Default to today if not provided
         $params = $request->getQueryParams();
+        // Default to today if not provided
         $date = $params['date'] ?? date('Y-m-d'); 
 
         $db = getDBConnection();
@@ -51,7 +51,7 @@ return function (App $app) {
         $stmt->execute([':date' => $date]);
         $results = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
 
-        // Return 3 emoji types always 
+        // 3 emoji are always returned
         $summary = [
             'happy' => (int)($results['happy'] ?? 0),
             'neutral' => (int)($results['neutral'] ?? 0),
