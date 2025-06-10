@@ -39,6 +39,15 @@ cd mood-board-app
 -php -S localhost:8000 -t public
 -This will start the backend server on http://localhost:8000
 
+
+##Routes
+
+# -POST /mood ==>   {
+#   "emoji": "happy"
+#    }
+#  ##
+# -
+-GET  /moods?date=YYYY-MM-DD ==> http://localhost:8000//moods?date=2025-06-10
 ## Frontend Setup
 
 -cd frontend
@@ -88,5 +97,14 @@ Send moods from Player View
 View mood summaries in Coach View
 
 CORS Setup for Backend
-If your frontend (on localhost:3000) makes requests to your backend (on localhost:8000), and you get CORS errors in the browser, this step ensures proper access.
+If your frontend (on localhost:3000) makes requests to your backend (on localhost:8000), and you get CORS errors in the browser, this step ensures proper access. Add it in your index.php
+
+$app->add(function ($request, $handler) {
+    $response = $handler->handle($request);
+    return $response
+        ->withHeader('Access-Control-Allow-Origin', '*')  // or specify your frontend URL
+        ->withHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        ->withHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+});
+
 ```
