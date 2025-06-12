@@ -41,12 +41,14 @@ cd mood-board-app
 
 
 ##Routes
+Test Locally
+Test POST endpoint:
+bashcurl -X POST http://localhost:8000/mood \
+  -H "Content-Type: application/json" \
+  -d '{"emoji": "happy"}'
+Test GET endpoint:
+bashcurl "http://localhost:8000/moods"
 
-# -POST /mood ==>   {
-#   "emoji": "happy"
-#    }
-#  ##
-# -
 -GET  /moods?date=YYYY-MM-DD ==> http://localhost:8000//moods?date=2025-06-10
 ## Frontend Setup
 
